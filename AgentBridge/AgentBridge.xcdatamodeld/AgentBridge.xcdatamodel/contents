@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C1510" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Activity" representedClassName="Activity" syncable="YES">
+        <attribute name="access_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="activities_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="activity_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="activity_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="buyer_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="buyer_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="client_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image_data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="listing_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="network_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="network_status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="other_user_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="other_user_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="permission" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pops_user_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pops_user_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="property_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="referral_buyer_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="referral_date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="referral_fee" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="referral_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="referral_response" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="referral_status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="referral_update_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="setting" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="AgentProfile" representedClassName="AgentProfile" syncable="YES">
+        <attribute name="about" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="activation_status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="average_price" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="average_sales" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="broker_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="brokerage_license" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countries_iso_code_3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countries_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fee_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image_data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="is_premium" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="is_term_accepted" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="licence" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mobile_number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mobile_number_main" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="mobile_number_show" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profile_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="registration_date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state_code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="street_address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="suburb" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tax_id_num" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="total_sides" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="total_volume" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zipcodes" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Brokerage" representedClassName="Brokerage" syncable="YES">
+        <attribute name="address_line1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="address_line2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="broker_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="broker_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="postal_code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="site" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="tax_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zone_id" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Buyer" representedClassName="Buyer" syncable="YES">
+        <attribute name="available_sqft" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bathroom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bedroom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bldg_sqft" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bldg_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="buyer_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="buyer_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cap_rate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ceiling_height" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="closed" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="condition" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contact_method" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="contact_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="expiry" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="features1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="features2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="features3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="furnished" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="garage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="grm" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hasnew" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="hasnew_2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="listing_class" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="listing_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="listingcount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lot_size" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lot_sqft" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="occupancy" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parking_ratio" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pet" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pool_spa" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pops_new" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="possession" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price_value" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="property_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="property_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="room_count" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="saved_pops" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="setting" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stories" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="style" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sub_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="term" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type_lease" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type_lease2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unit_sqft" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="units" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="view" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year_built" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zoned" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ContactInfoNumber" representedClassName="ContactInfoNumber" syncable="YES">
+        <attribute name="main" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pk_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="show" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Country" representedClassName="Country" syncable="YES">
+        <attribute name="address_format_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countries_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countries_iso_code_2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countries_iso_code_3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countries_name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Designation" representedClassName="Designation" syncable="YES">
+        <attribute name="country_available" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="designation_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="designations" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="LoginDetails" representedClassName="LoginDetails" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="profile_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Property" representedClassName="Property" syncable="YES">
+        <attribute name="available_sqft" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bathroom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bedroom" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bldg_sqft" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bldg_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cap_rate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ceiling_height" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="closed" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="condition" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date_created" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date_expired" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="desc" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="disclose" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="expiry" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="features1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="features2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="features3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="furnished" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="garage" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="grm" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="images" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="images_data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="listing_class" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="listing_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lot_size" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lot_sqft" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="occupancy" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="parking_ratio" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pet" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pocket_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pool_spa" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="possession" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="property_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="room_count" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="setting" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stories" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="style" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sub_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sub_type_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="term" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type_lease" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type_lease2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="type_property_type" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="unit_sqft" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="units" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="view" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year_built" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zip" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zoned" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="PropertyImages" representedClassName="PropertyImages" syncable="YES">
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image_data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="image_id" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Referral" representedClassName="Referral" syncable="YES">
+        <attribute name="agent_a" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="agent_b" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="agent_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="client_address_1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="client_address_2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="client_city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="client_country_code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="client_country_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="client_email" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="client_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="client_intention" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="client_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="client_number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="client_state_code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="client_state_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="client_zip" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="counter" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countered" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countries_iso_code_3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countries_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="docusign_envelope" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image_data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="price_1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price_2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="property_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="reason" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="referral_fee" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="referral_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state_code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="RequestAccess" representedClassName="RequestAccess" syncable="YES">
+        <attribute name="access_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="permission" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="property_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_a" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_b" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="RequestNetwork" representedClassName="RequestNetwork" syncable="YES">
+        <attribute name="network_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="other_user_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="State" representedClassName="State" syncable="YES">
+        <attribute name="zone_code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zone_country_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zone_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zone_name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Activity" positionX="0" positionY="0" width="128" height="480"/>
+        <element name="AgentProfile" positionX="0" positionY="0" width="128" height="555"/>
+        <element name="Brokerage" positionX="0" positionY="0" width="128" height="240"/>
+        <element name="Buyer" positionX="0" positionY="0" width="128" height="898"/>
+        <element name="ContactInfoNumber" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Country" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Designation" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="LoginDetails" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Property" positionX="0" positionY="0" width="128" height="915"/>
+        <element name="PropertyImages" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="Referral" positionX="0" positionY="0" width="128" height="555"/>
+        <element name="RequestAccess" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="RequestNetwork" positionX="0" positionY="0" width="128" height="105"/>
+        <element name="State" positionX="0" positionY="0" width="128" height="105"/>
+    </elements>
+</model>
