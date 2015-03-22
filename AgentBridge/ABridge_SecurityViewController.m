@@ -82,6 +82,10 @@
 }
 
 - (IBAction)savePassword:(id)sender {
+    NSError *error = nil;
+    NSRegularExpression *regexAtleastOne = [[NSRegularExpression alloc] initWithPattern:@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$" options:NSRegularExpressionCaseInsensitive error:&error];
+    
+    NSRegularExpression *regexInvalid = [[NSRegularExpression alloc] initWithPattern:@"[^a-zA-Z0-9]" options:NSRegularExpressionCaseInsensitive error:&error];
     
     if ([self.textFieldOldPassword.text isEqualToString:@""] || self.textFieldOldPassword.text == nil) {
         UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please input your current password" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -93,6 +97,18 @@
     }
     else if ([self.textFieldConfirmPassword.text isEqualToString:@""] || self.textFieldConfirmPassword.text == nil) {
         UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please Confirm your New password" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+    }
+    else if ([self.textFieldNewPassword.text length] < 8) {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Password must have at least 8 characters" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+    }
+    else if ([[regexAtleastOne matchesInString:self.textFieldNewPassword.text options:NSMatchingReportCompletion range:NSMakeRange(0, self.textFieldNewPassword.text.length)] count]) {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Password must have at least 1 uppercase, 1 lowercase character and 1 number" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+    }
+    else if ([[regexInvalid matchesInString:self.textFieldNewPassword.text options:NSMatchingReportCompletion range:NSMakeRange(0, self.textFieldNewPassword.text.length)] count]) {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Symbols are not allowed only alpha-numeric characters" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [av show];
     }
     else if ([self.textFieldNewPassword.text isEqualToString:self.textFieldConfirmPassword.text]) {

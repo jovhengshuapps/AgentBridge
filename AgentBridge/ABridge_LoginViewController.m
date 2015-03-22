@@ -12,6 +12,7 @@
 #import "ABridge_AppDelegate.h"
 #import "AgentProfile.h"
 #import "ASIHTTPRequest.h"
+#import "WebserviceCall.h"
 
 @interface ABridge_LoginViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *imageViewBackground;
@@ -32,6 +33,7 @@
 @property (strong, nonatomic) LoginDetails *item;
     
 @property (strong, nonatomic) NSURLConnection *urlConnectionProfile;
+@property (assign, nonatomic) NSInteger loginCounter;
     
     @property (strong, nonatomic) AgentProfile *profileData;
     
@@ -45,9 +47,10 @@
 @synthesize dataReceived;
 @synthesize timer;
 @synthesize count;
-    @synthesize urlConnectionProfile;
-    @synthesize profileData;
+@synthesize urlConnectionProfile;
+@synthesize profileData;
 @synthesize item;
+@synthesize loginCounter;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -121,6 +124,8 @@
     
     timer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(updateImage) userInfo:nil repeats:YES];
     count = 2;
+    
+    loginCounter = 0;
 }
 
 - (void)didReceiveMemoryWarning
@@ -198,10 +203,23 @@
     
     if (self.textEmail.text != nil && self.textPassword.text != nil) {
         if ([self NSStringIsValidEmail:self.textEmail.text]) {
-            NSMutableString *urlString = [NSMutableString stringWithString:WS_LOGIN_WS];
+            
+//            WebserviceCall *call = [[WebserviceCall alloc] init];
+//            
+//            [call initCallWithServiceURL:[NSString stringWithFormat:@"%@%@",WSA_URL_ROOT,WS_LOGIN_WS] withParameters:@{@"email":self.textEmail.text,@"password":self.textPassword.text} withCompletionHandler:^(id responseObject) {
+//                NSError *error = nil;
+//                NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&error];
+//                
+//                
+//                NSLog(@"error:%@\n\nresponse:%@",error,jsonResponse);
+//                
+//            }];
+            
+            
+            NSMutableString *urlString = [NSMutableString stringWithString:WSA_URL_ROOT];
+            [urlString appendString:WS_LOGIN_WS];
             NSString *parameters = [NSString stringWithFormat:@"email=%@&password=%@",self.textEmail.text,self.textPassword.text];
-//            [urlString appendString:parameters];
-//            //NSLog(@"url:%@",urlString);
+            
             NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
             
             urlRequest.HTTPMethod = @"POST";
@@ -211,12 +229,12 @@
             self.urlConnectionLogin = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
             
             
-//            if (urlConnectionLogin) {
-//                //NSLog(@"Connection Successful");
-//            }
-//            else {
-//                //NSLog(@"Connection Failed");
-//            }
+            if (urlConnectionLogin) {
+                //NSLog(@"Connection Successful");
+            }
+            else {
+                //NSLog(@"Connection Failed");
+            }
             
         }
         else {
@@ -260,12 +278,12 @@
 }
 - (void)connection:(NSURLConnection*)connection didReceiveData:(NSData*)data
 {
-    ////NSLog(@"Did Receive Data %@", data);
+//    NSLog(@"Did Receive Data %@", data);
     [self.dataReceived appendData:data];
 }
 - (void)connection:(NSURLConnection*)connection didFailWithError:(NSError*)error
 {
-//    //NSLog(@"Did Fail");
+    NSLog(@"Did Fail");
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Internet Connection" message:@"You have no Internet Connection available." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
@@ -277,7 +295,7 @@
     
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:self.dataReceived options:NSJSONReadingAllowFragments error:&error];
     
-     //NSLog(@"Did Finish:%@", json);
+     NSLog(@"Did Finish:%@", json);
     
     if (connection == self.urlConnectionLogin) {
         
@@ -348,8 +366,15 @@
             }
         }
         else {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Error" message:@"Email and password does not match a member profile. Please try again or apply for membership." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alert show];
+            loginCounter += 1;
+            if (loginCounter == 5) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"You have exceeded your maximum login attemp, please reset your password on our site." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            }
+            else {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Login Attemp %li Failed",(long)loginCounter] message:@"Email and password does not match a member profile. Please try again or apply for membership." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alert show];
+            }
             [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
         }
     }
@@ -427,8 +452,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    
+   
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDuration:0.5f];
@@ -436,6 +460,10 @@
     self.viewOverlay.alpha = 0.0f;
     
     [UIView commitAnimations];
+    if ([alertView.title isEqualToString:@"Login Failed"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:WSA_URL_ROOT]];
+    }
+    
 }
     
     
