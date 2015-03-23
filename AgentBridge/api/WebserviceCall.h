@@ -27,8 +27,6 @@ typedef NS_ENUM(NSInteger, WebserviceCallResponse) {
     NSMutableData *_responseData;
 }
 
-@property (strong, nonatomic) Reachability *reachabilityManager;
-
--(void)initCallWithServiceURL:(NSString*)url withParameters:(NSDictionary *)parameters withCompletionHandler:(void(^)(id responseObject))completion;
+-(void)initCallMethod:(NSString*)method serviceURL:(NSString*)url withParameters:(NSDictionary *)parameters withCompletionHandler:(void(^)(id responseObject))completion;
 
 @end

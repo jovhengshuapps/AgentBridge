@@ -204,29 +204,65 @@
     if (self.textEmail.text != nil && self.textPassword.text != nil) {
         if ([self NSStringIsValidEmail:self.textEmail.text]) {
             
-//            WebserviceCall *call = [[WebserviceCall alloc] init];
+            WebserviceCall *call = [[WebserviceCall alloc] init];
+            
+            [call initCallMethod:@"POST" serviceURL:[NSString stringWithFormat:@"%@%@",WSA_URL_ROOT,WS_LOGIN_WS] withParameters:@{@"email":self.textEmail.text,@"password":self.textPassword.text} withCompletionHandler:^(id responseObject) {
+                NSError *error = nil;
+                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&error];
+                
+                
+                NSLog(@"error:%@\n\nresponse:%@",error,json);
+                
+                if ([[json objectForKey:@"data"] count]) {
+                    self.labelLoading.text = @"Saving Login details.";
+                    NSDictionary *dataJson = [[json objectForKey:@"data"] firstObject];
+                    
+                    NSManagedObjectContext *context = ((ABridge_AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
+                    
+                    self.item = [NSEntityDescription
+                                 insertNewObjectForEntityForName:@"LoginDetails"
+                                 inManagedObjectContext:context];
+                    self.item.user_id = [NSNumber numberWithInt:[[dataJson objectForKey:@"id"] integerValue]];
+                    self.item.name = [dataJson objectForKey:@"name"];
+                    self.item.username = [dataJson objectForKey:@"username"];
+                    self.item.email = [dataJson objectForKey:@"email"];
+                    
+                    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                    NSError *errorSave = nil;
+                    if (![context save:&errorSave]) {
+                        //NSLog(@"Error occurred in saving Login Details:%@",[errorSave localizedDescription]);
+                    }
+                    else {
+                        [self retrieveProfileInfo];
+                    }
+                }
+                else {
+                    loginCounter += 1;
+                    if (loginCounter == 5) {
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Login Failed" message:@"You have exceeded your maximum login attemp, please reset your password on our site." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        [alert show];
+                    }
+                    else {
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:[NSString stringWithFormat:@"Login Attemp %li Failed",(long)loginCounter] message:@"Email and password does not match a member profile. Please try again or apply for membership." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        [alert show];
+                    }
+                    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+                }
+                
+            }];
+            
+            
+//            NSMutableString *urlString = [NSMutableString stringWithString:WSA_URL_ROOT];
+//            [urlString appendString:WS_LOGIN_WS];
+//            NSString *parameters = [NSString stringWithFormat:@"?email=%@&password=%@",self.textEmail.text,self.textPassword.text];
 //            
-//            [call initCallWithServiceURL:[NSString stringWithFormat:@"%@%@",WSA_URL_ROOT,WS_LOGIN_WS] withParameters:@{@"email":self.textEmail.text,@"password":self.textPassword.text} withCompletionHandler:^(id responseObject) {
-//                NSError *error = nil;
-//                NSDictionary *jsonResponse = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&error];
-//                
-//                
-//                NSLog(@"error:%@\n\nresponse:%@",error,jsonResponse);
-//                
-//            }];
-            
-            
-            NSMutableString *urlString = [NSMutableString stringWithString:WSA_URL_ROOT];
-            [urlString appendString:WS_LOGIN_WS];
-            NSString *parameters = [NSString stringWithFormat:@"email=%@&password=%@",self.textEmail.text,self.textPassword.text];
-            
-            NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
-            
-            urlRequest.HTTPMethod = @"POST";
-            urlRequest.HTTPBody = [parameters dataUsingEncoding:NSUTF8StringEncoding];
-            
-            
-            self.urlConnectionLogin = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
+//            NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+//            
+//            urlRequest.HTTPMethod = @"POST";
+//            urlRequest.HTTPBody = [parameters dataUsingEncoding:NSUTF8StringEncoding];
+//            
+//            
+//            self.urlConnectionLogin = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
             
             
             if (urlConnectionLogin) {
@@ -246,6 +282,114 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Please Input your Email and Password" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
+    
+}
+
+- (void) retrieveProfileInfo {
+    
+    //Register Device
+    self.labelLoading.text = @"Retrieving Profile.";
+    WebserviceCall *callRegisterDevice= [[WebserviceCall alloc] init];    
+    
+    NSString *deviceToken = ((ABridge_AppDelegate *)[[UIApplication sharedApplication] delegate]).deviceTokenString;
+    NSInteger user_id = [self.item.user_id integerValue];
+    
+    deviceToken = (deviceToken)?deviceToken:@"simulator";
+    
+    NSLog(@"id:%i, %@",user_id, deviceToken);
+    
+    [callRegisterDevice initCallMethod:@"GET" serviceURL:@"http://agentbridge.com/webservice/register_device.php" withParameters:@{@"user_id":[NSNumber numberWithInteger:user_id],@"token":deviceToken} withCompletionHandler:^(id responseObject) {
+        NSError *errorData = nil;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&errorData];
+        NSLog(@"json:%@",json);
+        ((ABridge_AppDelegate *)[[UIApplication sharedApplication] delegate]).tokenId = [[[json objectForKey:@"data"] firstObject] objectForKey:@"token_id"];
+    }];
+    
+//    NSString *urlString = [NSString stringWithFormat:@"http://agentbridge.com/webservice/register_device.php?user_id=%i&token=%@", user_id, deviceToken];
+    //                    NSLog(@"urlString:%@",urlString);
+//    __block NSError *errorData = nil;
+//    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlString]];
+//    [request setCompletionBlock:^{
+//        // Use when fetching text data
+//        //                        NSString *responseString = [request responseString];
+//        // Use when fetching binary data
+//        NSData *responseData = [request responseData];
+//        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&errorData];
+//        //                        NSLog(@"json:%@",json);
+//        ((ABridge_AppDelegate *)[[UIApplication sharedApplication] delegate]).tokenId = [[[json objectForKey:@"data"] firstObject] objectForKey:@"token_id"];
+//    }];
+//    [request setFailedBlock:^{
+//        NSError *error = [request error];
+//        NSLog(@"error:%@",error);
+//    }];
+//    [request startAsynchronous];
+    
+    
+    //Retrieve User Profile
+    WebserviceCall *callProfile = [[WebserviceCall alloc] init];
+    
+    [callProfile initCallMethod:@"GET" serviceURL:[NSString stringWithFormat:@"%@%@?email=%@",WSA_URL_ROOT,WS_GETUSER_PROFILE_INFO,self.item.email] withParameters:nil withCompletionHandler:^(id responseObject) {
+        NSError *error = nil;
+        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&error];
+        
+        
+        NSLog(@"error:%@\n\nresponse:%@",error,json);
+        
+        if ([[json objectForKey:@"data"] count]) {
+            
+            self.labelLoading.text = @"Saving Profile.";
+            NSManagedObjectContext *context = ((ABridge_AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
+            for (NSDictionary *entry in [json objectForKey:@"data"]) {
+                self.profileData = nil;
+                
+                NSPredicate * predicate = [NSPredicate predicateWithFormat:@"user_id == %@", [entry objectForKey:@"user_id"]];
+                NSArray *result = [self fetchObjectsWithEntityName:@"AgentProfile" andPredicate:predicate];
+                if ([result count]) {
+                    self.profileData = (AgentProfile*)[result firstObject];
+                }
+                else {
+                    self.profileData = [NSEntityDescription insertNewObjectForEntityForName: @"AgentProfile" inManagedObjectContext: context];
+                }
+                
+                [self.profileData setValuesForKeysWithDictionary:entry];
+                
+                NSError *error = nil;
+                if (![context save:&error]) {
+                    //NSLog(@"Error on saving Buyer:%@",[error localizedDescription]);
+                }
+                else {
+                    //                    NSFetchRequest *fetchRequestProfile = [[NSFetchRequest alloc] init];
+                    //                    NSEntityDescription *entityProfile = [NSEntityDescription entityForName:@"AgentProfile"
+                    //                                                                     inManagedObjectContext:context];
+                    //                    [fetchRequestProfile setEntity:entityProfile];
+                    //
+                    //                    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"user_id == %@", self.item.user_id];
+                    //                    [fetchRequestProfile setPredicate:predicate];
+                    //
+                    //                    NSError *error = nil;
+                    //                    NSArray *fetchedProfile = [context executeFetchRequest:fetchRequestProfile error:&error];
+                    //
+                    //                    //NSLog(@"%@\nprofile:%@",self.item.user_id,fetchedProfile);
+                    //                    if ([fetchedProfile count] == 0) {
+                    //                        if (![context save:&error]) {
+                    //                            //NSLog(@"Error on saving Buyer:%@",[error localizedDescription]);
+                    //                        }
+                    //                        else {
+                    [self performSelector:@selector(proceedToMainApp) withObject:nil afterDelay:1];
+                    //                        }
+                    //                    }
+                    //                    else {
+                    //                    }
+                }
+            }
+            
+            
+            
+        }
+        
+    }];
+    
+        
     
 }
 

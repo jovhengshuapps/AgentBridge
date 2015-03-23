@@ -16,17 +16,19 @@
 #define WSA_URL_ROOT  @"https://www.agentbridge.com/"
 
 #define WS_LOGIN  @"login.php"
-#define WS_LOGIN_WS  @"index.php/component/nrds/?taskloginWebService&formatraw"
-#define WS_CHANGE_PASSWORD_WS  @"index.php/component/nrds/?taskchangePasswordWS&formatraw"
+#define WS_LOGIN_WS  @"index.php/component/nrds/?task=loginWebService&format=raw"
+#define WS_CHANGE_PASSWORD_WS  @"index.php/component/nrds/?task=changePasswordWS&format=raw"
 #define WS_SEND_INVITE  @"send_invite_b.php"
 #define WS_GET_PROFILE  @"getprofile.php"
 #define WS_VALIDATE_EMAIL  @"validate_invite_b.php"
+
+#define WS_GETUSER_PROFILE_INFO @"getuser_info.php"
 
 #define WS_GETUSER_NETWORK_INFO  @"getuser_network_info.php"
 #define WS_GET_POPs  @"getpops.php"
 #define WS_GET_POPs_ByID  @"getpops_byid.php"
 #define WS_GET_BUYERS  @"getbuyers.php"
-#define WS_GET_BUYERS_WS  @"index.php/component/propertylisting/?taskbuyers_raw&formatraw&webservice1"
+#define WS_GET_BUYERS_WS  @"index.php/component/propertylisting/?task=buyers_raw&format=raw&webservice1"
 #define WS_GET_BUYERS_POPSID  @"getbuyerswpopsid.php"
 #define WS_GET_POPS_IMAGES  @"getpops_images.php"
 #define WS_GET_BROKER_LIST  @"get_broker_list.php"
@@ -34,7 +36,7 @@
 
 #define WS_GET_NEW_BUYERS_LIST  @"getbuyers_new.php"
 #define WS_GET_ALL_BUYERS_LIST  @"getbuyer_list_pops.php"
-#define WS_GET_ALL_BUYERS_LIST_WS  @"index.php/component/propertylisting/?taskindividualbuyers_raw&formatraw&webservice1"
+#define WS_GET_ALL_BUYERS_LIST_WS  @"index.php/component/propertylisting/?task=individualbuyers_raw&format=raw&webservice1"
 #define WS_GET_SAVED_BUYERS_LIST  @"getbuyers_saved.php"
 
 #define WS_GET_DESIGNATION  @"getuser_designations.php"
@@ -82,7 +84,7 @@
 //Search by POPs
 #define WS_SEARCH_POPS  @"search_pops.php"
 
-#define WS_SEARCH_POPS_WS  @"index.php/component/customsearch/?tasksearchlisting_raw&webservice1&formatraw"
+#define WS_SEARCH_POPS_WS  @"index.php/component/customsearch/?task=searchlisting_raw&webservice1&format=raw"
 
 //Add Mobile Number
 #define WS_ADD_MOBILE_NUMBER  @"add_mobilenumber.php"
@@ -131,6 +133,6 @@
 
 #define WS_USER_ID  @"user_id"
 
-#define WS_ACCEPT_REFERRAL  @"index.php/component/propertylisting/?taskacceptreferral&formatraw"
+#define WS_ACCEPT_REFERRAL  @"index.php/component/propertylisting/?task=acceptreferral&format=raw"
 
 #endif

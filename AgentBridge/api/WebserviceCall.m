@@ -9,46 +9,36 @@
 #import "WebserviceCall.h"
 
 @implementation WebserviceCall
-@synthesize reachabilityManager;
 
--(void)initCallWithServiceURL:(NSString*)url withParameters:(NSDictionary *)parameters withCompletionHandler:(void(^)(id responseObject))completion{
-    
-        self.reachabilityManager = [Reachability reachabilityWithHostName:url];
+-(void)initCallMethod:(NSString*)method serviceURL:(NSString*)url withParameters:(NSDictionary *)parameters withCompletionHandler:(void(^)(id responseObject))completion{
+    NSLog(@"url:%@, params:%@",url,parameters);
+    if ([method isEqualToString:@"POST"]) {
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
         
-        NSLog(@"reachability:%@",[self.reachabilityManager currentReachabilityString]);
-        
-        NSURL *urlURL = [NSURL URLWithString:url];
-        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:urlURL];
-    request.HTTPMethod = @"POST";
-//    request.HTTPBody = [@"email=rebekahroque@ymail.com&password=Umberto3" dataUsingEncoding:NSUTF8StringEncoding];
-    
-        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-        operation.responseSerializer = [AFHTTPResponseSerializer serializer];
-        
-        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [manager POST:url parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
             
+            [formData appendPartWithFormData:[parameters[@"email"] dataUsingEncoding:NSUTF8StringEncoding] name:@"email"];
+            [formData appendPartWithFormData:[parameters[@"password"] dataUsingEncoding:NSUTF8StringEncoding] name:@"password"];
+            
+        } success:^(AFHTTPRequestOperation *operation, id responseObject) {
             completion(responseObject);
-            
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error Retrieving Weather"
-                                                                message:[error localizedDescription]
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"Ok"
-                                                      otherButtonTitles:nil];
-            [alertView show];
+            NSLog(@"POST Error: %@", error);
         }];
+
+    }
+    else if ([method isEqualToString:@"GET"]){
         
-        [operation start];
-    
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    
-//    [manager POST:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSLog(@"JSON: %@", responseObject);
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"Error: %@", error);
-//    }];
-    
+        AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+        manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+        
+        [manager GET:url parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            completion(responseObject);
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            NSLog(@"GET Error: %@", error);
+        }];
+    }
     
     
         

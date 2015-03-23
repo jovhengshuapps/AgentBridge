@@ -10,29 +10,41 @@
 	<string>AgentBridge</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>0595C23C-DA79-4B9A-A467-8284507D57C8</key>
-		<string>https://github.com/jovhenni19/AgentBridge.git</string>
+		<key>6F977CC95E17EFDC3F5A20B3DE6ACA9914F309FF</key>
+		<string>https://github.com/jovhengshuapps/AgentBridge.git</string>
+		<key>ED53BF383FDDDE348BE5E99233026287BCEBFA6A</key>
+		<string>https://github.com/jovhengshuapps/AgentBridge.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>AgentBridge.xcodeproj/project.xcworkspace</string>
+	<string>AgentBridge.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>0595C23C-DA79-4B9A-A467-8284507D57C8</key>
+		<key>6F977CC95E17EFDC3F5A20B3DE6ACA9914F309FF</key>
+		<string>../../../..</string>
+		<key>ED53BF383FDDDE348BE5E99233026287BCEBFA6A</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/jovhenni19/AgentBridge.git</string>
+	<string>https://github.com/jovhengshuapps/AgentBridge.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>0595C23C-DA79-4B9A-A467-8284507D57C8</string>
+	<string>ED53BF383FDDDE348BE5E99233026287BCEBFA6A</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>0595C23C-DA79-4B9A-A467-8284507D57C8</string>
+			<string>6F977CC95E17EFDC3F5A20B3DE6ACA9914F309FF</string>
+			<key>IDESourceControlWCCName</key>
+			<string>..</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>ED53BF383FDDDE348BE5E99233026287BCEBFA6A</string>
 			<key>IDESourceControlWCCName</key>
 			<string>AgentBridge</string>
 		</dict>
