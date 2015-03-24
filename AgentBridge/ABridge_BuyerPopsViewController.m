@@ -85,28 +85,28 @@
     [super viewDidAppear:animated];
     
     NSString *parameters = [NSString stringWithFormat:@"?buyer_id=%li",(long)self.buyer_id];
-    
-    if (is_saved) {
-        self.buttonSave.hidden = YES;
-        self.urlConnectionProperty = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getbuyers_saved.php" andParameters:parameters];
-    }
-    else {
-        
-        self.urlConnectionProperty = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getbuyers_new.php" andParameters:parameters];
-    }
-    
-//    //NSLog(@"url:%@",self.urlConnectionProperty.originalRequest.URL);
-    if (self.urlConnectionProperty) {
-//        //NSLog(@"Connection Successful");
-        [self addURLConnection:self.urlConnectionProperty];
-        //        [self showOverlayWithMessage:@"LOADING" withIndicator:YES];
-        
-        self.activityIndicator.hidden = NO;
-        [self.activityIndicator startAnimating];
-    }
-    else {
-//        //NSLog(@"Connection Failed");
-    }
+//    
+//    if (is_saved) {
+//        self.buttonSave.hidden = YES;
+//        self.urlConnectionProperty = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getbuyers_saved.php" andParameters:parameters];
+//    }
+//    else {
+//        
+//        self.urlConnectionProperty = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getbuyers_new.php" andParameters:parameters];
+//    }
+//    
+////    //NSLog(@"url:%@",self.urlConnectionProperty.originalRequest.URL);
+//    if (self.urlConnectionProperty) {
+////        //NSLog(@"Connection Successful");
+//        [self addURLConnection:self.urlConnectionProperty];
+//        //        [self showOverlayWithMessage:@"LOADING" withIndicator:YES];
+//        
+//        self.activityIndicator.hidden = NO;
+//        [self.activityIndicator startAnimating];
+//    }
+//    else {
+////        //NSLog(@"Connection Failed");
+//    }
 }
 
 - (void)didReceiveMemoryWarning

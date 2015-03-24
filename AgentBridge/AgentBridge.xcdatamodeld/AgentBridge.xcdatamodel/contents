@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C1510" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14C1514" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Activity" representedClassName="Activity" syncable="YES">
         <attribute name="access_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="activities_id" optional="YES" attributeType="String" syncable="YES"/>
@@ -8,25 +8,42 @@
         <attribute name="buyer_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="buyer_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="client_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="client_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="docusign_envelope" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="edited_by" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="has_multiples" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="image_data" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="label" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="listing_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="network_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="network_status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="other_image" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="other_user_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="other_user_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="permission" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pkId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pocket_closed" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pocket_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pocket_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pocket_userId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pops_setting" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pops_user_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pops_user_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="property_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="ref_status" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="referral_buyer_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="referral_date" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="referral_fee" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="referral_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="referral_response" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="referral_status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="referral_status" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="referral_update_id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="req_access_per" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="req_net_status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="selected_permission" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="setting" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="user_id" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="user_name" optional="YES" attributeType="String" syncable="YES"/>
@@ -290,7 +307,7 @@
         <attribute name="zone_name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Activity" positionX="0" positionY="0" width="128" height="480"/>
+        <element name="Activity" positionX="0" positionY="0" width="128" height="735"/>
         <element name="AgentProfile" positionX="0" positionY="0" width="128" height="555"/>
         <element name="Brokerage" positionX="0" positionY="0" width="128" height="240"/>
         <element name="Buyer" positionX="0" positionY="0" width="128" height="898"/>

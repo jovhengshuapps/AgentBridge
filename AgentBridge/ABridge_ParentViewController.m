@@ -83,25 +83,28 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [self.slidingViewController anchorTopViewTo:ECLeft];
 }
-
-- (NSURLConnection *)urlConnectionWithURLString:(NSString *)urlString andParameters:(NSString *)parameters {
-    NSMutableString *urlString_ = [NSMutableString stringWithString:urlString];
-    [urlString_ appendString:parameters];
-//    //NSLog(@"url:%@",urlString);
-    NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString_]];
+- (void) performWebserviceCall:(NSString*)method url:(NSString*)url parameters:(NSDictionary*)parameters completion:(void(^)(id responseObject))completion {
+    WebserviceCall *call = [[WebserviceCall alloc] init];
     
-//    [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
-//    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-    return [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
+    [call initCallMethod:method serviceURL:url withParameters:parameters withCompletionHandler:^(id responseObject) {
+        completion(responseObject);
+    }];
 }
-
-- (void)addURLConnection:(NSURLConnection*)urlConnection {
-    if (self.arrayOfURLConnection == nil) {
-        self.arrayOfURLConnection = [[NSMutableArray alloc] init];
-    }
-    
-    [self.arrayOfURLConnection addObject:urlConnection];
-}
+//- (NSURLConnection *)urlConnectionWithURLString:(NSString *)urlString andParameters:(NSString *)parameters {
+//    NSMutableString *urlString_ = [NSMutableString stringWithString:urlString];
+//    [urlString_ appendString:parameters];
+//    NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString_]];
+//    
+//    return [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
+//}
+//
+//- (void)addURLConnection:(NSURLConnection*)urlConnection {
+//    if (self.arrayOfURLConnection == nil) {
+//        self.arrayOfURLConnection = [[NSMutableArray alloc] init];
+//    }
+//    
+//    [self.arrayOfURLConnection addObject:urlConnection];
+//}
 
 - (NSArray *)fetchObjectsWithEntityName:(NSString *)entity andPredicate:(NSPredicate *)predicate {
     NSManagedObjectContext *context = ((ABridge_AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;

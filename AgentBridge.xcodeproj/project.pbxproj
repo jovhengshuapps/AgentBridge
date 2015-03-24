@@ -26,6 +26,7 @@
 		335046B31AB9B228007D3C9F /* UIWebView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 3350469E1AB9B228007D3C9F /* UIWebView+AFNetworking.m */; };
 		335046B41AB9B228007D3C9F /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 335046A01AB9B228007D3C9F /* Reachability.m */; };
 		335046B51AB9B228007D3C9F /* WebserviceCall.m in Sources */ = {isa = PBXBuildFile; fileRef = 335046A21AB9B228007D3C9F /* WebserviceCall.m */; };
+		33BEE05D1AC1021B0036D203 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 33BEE05C1AC1021B0036D203 /* Activity.m */; };
 		33FA89CC1ABEC72600D76079 /* ABridge_AddPoPsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FA89CB1ABEC72600D76079 /* ABridge_AddPoPsViewController.m */; };
 		33FA89CF1ABEDA5900D76079 /* ABridge_AddBuyerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 33FA89CE1ABEDA5900D76079 /* ABridge_AddBuyerViewController.m */; };
 		447F8F4C1AB7F19300667970 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E63C55518ABD0810001616B /* libTestFlight.a */; };
@@ -35,7 +36,6 @@
 		6E3B3C7D185EF6310065B51C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EF94F24185EDEB900460878 /* SenTestingKit.framework */; };
 		6E3B3C80185EF8D80065B51C /* ABridge_SendTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E3B3C7F185EF8D80065B51C /* ABridge_SendTransaction.m */; };
 		6E40004F1856C8D6000B78E6 /* ABridge_AgentInvitesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E40004E1856C8D5000B78E6 /* ABridge_AgentInvitesViewController.m */; };
-		6E47185D186456B60016B407 /* Activity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E47185C186456B60016B407 /* Activity.m */; };
 		6E483ECE1862D0E80071691D /* ContactInfoNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E483ECD1862D0E60071691D /* ContactInfoNumber.m */; };
 		6E483EDB1862EC370071691D /* Brokerage.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E483EDA1862EC370071691D /* Brokerage.m */; };
 		6E483EDE1862EC380071691D /* Designation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6E483EDD1862EC380071691D /* Designation.m */; };
@@ -167,6 +167,8 @@
 		335046A01AB9B228007D3C9F /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		335046A11AB9B228007D3C9F /* WebserviceCall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebserviceCall.h; sourceTree = "<group>"; };
 		335046A21AB9B228007D3C9F /* WebserviceCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebserviceCall.m; sourceTree = "<group>"; };
+		33BEE05B1AC1021B0036D203 /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity.h; sourceTree = "<group>"; };
+		33BEE05C1AC1021B0036D203 /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activity.m; sourceTree = "<group>"; };
 		33FA89CA1ABEC72600D76079 /* ABridge_AddPoPsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABridge_AddPoPsViewController.h; sourceTree = "<group>"; };
 		33FA89CB1ABEC72600D76079 /* ABridge_AddPoPsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABridge_AddPoPsViewController.m; sourceTree = "<group>"; };
 		33FA89CD1ABEDA5900D76079 /* ABridge_AddBuyerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABridge_AddBuyerViewController.h; sourceTree = "<group>"; };
@@ -182,8 +184,6 @@
 		6E3B3C7F185EF8D80065B51C /* ABridge_SendTransaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABridge_SendTransaction.m; sourceTree = "<group>"; };
 		6E40004D1856C8D5000B78E6 /* ABridge_AgentInvitesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABridge_AgentInvitesViewController.h; sourceTree = "<group>"; };
 		6E40004E1856C8D5000B78E6 /* ABridge_AgentInvitesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABridge_AgentInvitesViewController.m; sourceTree = "<group>"; };
-		6E47185B186456B60016B407 /* Activity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Activity.h; sourceTree = "<group>"; };
-		6E47185C186456B60016B407 /* Activity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Activity.m; sourceTree = "<group>"; };
 		6E483ECC1862D0E60071691D /* ContactInfoNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInfoNumber.h; sourceTree = "<group>"; };
 		6E483ECD1862D0E60071691D /* ContactInfoNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInfoNumber.m; sourceTree = "<group>"; };
 		6E483ED91862EC370071691D /* Brokerage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Brokerage.h; sourceTree = "<group>"; };
@@ -496,10 +496,10 @@
 		6EBBD7541834823F00166D63 /* CoreData Objects */ = {
 			isa = PBXGroup;
 			children = (
+				33BEE05B1AC1021B0036D203 /* Activity.h */,
+				33BEE05C1AC1021B0036D203 /* Activity.m */,
 				6E697993187541DF0037F564 /* Property.h */,
 				6E697994187541DF0037F564 /* Property.m */,
-				6E47185B186456B60016B407 /* Activity.h */,
-				6E47185C186456B60016B407 /* Activity.m */,
 				6E483EDC1862EC380071691D /* Designation.h */,
 				6E483EDD1862EC380071691D /* Designation.m */,
 				6E483ED91862EC370071691D /* Brokerage.h */,
@@ -944,7 +944,6 @@
 				335046B11AB9B228007D3C9F /* UIProgressView+AFNetworking.m in Sources */,
 				6E28ACBA1835ED2D007E0C63 /* LoginDetails.m in Sources */,
 				6E791B49183CD28200BB76B3 /* Referral.m in Sources */,
-				6E47185D186456B60016B407 /* Activity.m in Sources */,
 				6EFF61401851BB5700A5A86A /* ASIDownloadCache.m in Sources */,
 				6E697995187541DF0037F564 /* Property.m in Sources */,
 				33FA89CF1ABEDA5900D76079 /* ABridge_AddBuyerViewController.m in Sources */,
@@ -978,6 +977,7 @@
 				6EBBD7671834A71D00166D63 /* ABridge_ReferralPagesViewController.m in Sources */,
 				335046A81AB9B228007D3C9F /* AFURLConnectionOperation.m in Sources */,
 				6EBBD7701834B48A00166D63 /* ABridge_ActivityPagesViewController.m in Sources */,
+				33BEE05D1AC1021B0036D203 /* Activity.m in Sources */,
 				335046AE1AB9B228007D3C9F /* UIAlertView+AFNetworking.m in Sources */,
 				6E40004F1856C8D6000B78E6 /* ABridge_AgentInvitesViewController.m in Sources */,
 				6EDF11B91845D5FA001BFC6B /* AgentProfile.m in Sources */,

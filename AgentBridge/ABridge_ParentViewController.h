@@ -15,6 +15,12 @@
 #import "LoginDetails.h"
 #import "Constants.h"
 
+#import "CommonWebserviceCall.h"
+#import "WebserviceCall.h"
+
+static NSString *const GET_METHOD = @"GET";
+static NSString *const POST_METHOD = @"POST";
+
 @interface ABridge_ParentViewController : UIViewController <UIScrollViewDelegate>
 
 @property (strong, nonatomic) NSMutableArray *arrayOfURLConnection;
@@ -29,8 +35,10 @@
 - (void) dismissOverlay;
 - (void) reloadData;
 
-- (NSURLConnection*)urlConnectionWithURLString:(NSString*)urlString andParameters:(NSString*)parameters;
-- (void)addURLConnection:(NSURLConnection*)urlConnection;
+
+- (void) performWebserviceCall:(NSString*)method url:(NSString*)url parameters:(NSDictionary*)parameters completion:(void(^)(id responseObject))completion;
+//- (NSURLConnection*)urlConnectionWithURLString:(NSString*)urlString andParameters:(NSString*)parameters;
+//- (void)addURLConnection:(NSURLConnection*)urlConnection;
 - (NSArray*)fetchObjectsWithEntityName:(NSString*)entity andPredicate:(NSPredicate*)predicate;
 
 @end

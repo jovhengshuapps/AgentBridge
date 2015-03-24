@@ -92,19 +92,19 @@
 
 - (void)loadBuyers{
     NSString *parameters = [NSString stringWithFormat:@"?user_id=%@",self.loginDetail.user_id];
-    
-    self.urlConnectionBuyer = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getbuyers.php" andParameters:parameters];
-    
-    if (self.urlConnectionBuyer) {
-        //        //NSLog(@"Connection Successful");
-        [self addURLConnection:self.urlConnectionBuyer];
-        self.activityIndicator.hidden = NO;
-        [self.activityIndicator startAnimating];
-        //        [self showOverlayWithMessage:@"LOADING" withIndicator:YES];
-    }
-    else {
-        //        //NSLog(@"Connection Failed");
-    }
+//    
+//    self.urlConnectionBuyer = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getbuyers.php" andParameters:parameters];
+//    
+//    if (self.urlConnectionBuyer) {
+//        //        //NSLog(@"Connection Successful");
+//        [self addURLConnection:self.urlConnectionBuyer];
+//        self.activityIndicator.hidden = NO;
+//        [self.activityIndicator startAnimating];
+//        //        [self showOverlayWithMessage:@"LOADING" withIndicator:YES];
+//    }
+//    else {
+//        //        //NSLog(@"Connection Failed");
+//    }
 }
 
 - (void)didReceiveMemoryWarning

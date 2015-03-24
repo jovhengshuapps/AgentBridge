@@ -98,19 +98,19 @@
 - (void) loadProperty {
     NSString *parameters = [NSString stringWithFormat:@"?user_id=%@",self.loginDetail.user_id];
     
-    self.urlConnectionProperty = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getpops.php" andParameters:parameters];
-    
-    if (self.urlConnectionProperty) {
-        //        //NSLog(@"Connection Successful");
-        [self addURLConnection:self.urlConnectionProperty];
-        //        [self showOverlayWithMessage:@"LOADING" withIndicator:YES];
-        
-        self.activityIndicator.hidden = NO;
-        [self.activityIndicator startAnimating];
-    }
-    else {
-        //        //NSLog(@"Connection Failed");
-    }
+//    self.urlConnectionProperty = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getpops.php" andParameters:parameters];
+//    
+//    if (self.urlConnectionProperty) {
+//        //        //NSLog(@"Connection Successful");
+//        [self addURLConnection:self.urlConnectionProperty];
+//        //        [self showOverlayWithMessage:@"LOADING" withIndicator:YES];
+//        
+//        self.activityIndicator.hidden = NO;
+//        [self.activityIndicator startAnimating];
+//    }
+//    else {
+//        //        //NSLog(@"Connection Failed");
+//    }
 }
 
 - (void)didReceiveMemoryWarning

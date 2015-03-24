@@ -2,8 +2,8 @@
 //  Activity.m
 //  AgentBridge
 //
-//  Created by host24_iOS Dev on 12/20/13.
-//  Copyright (c) 2013 host24_iOS Dev. All rights reserved.
+//  Created by Joshua Jose Pecson on 3/24/15.
+//  Copyright (c) 2015 host24_iOS Dev. All rights reserved.
 //
 
 #import "Activity.h"
@@ -11,6 +11,7 @@
 
 @implementation Activity
 
+@dynamic access_id;
 @dynamic activities_id;
 @dynamic activity_id;
 @dynamic activity_type;
@@ -21,6 +22,7 @@
 @dynamic image;
 @dynamic image_data;
 @dynamic listing_id;
+@dynamic network_id;
 @dynamic network_status;
 @dynamic other_user_id;
 @dynamic other_user_name;
@@ -38,7 +40,22 @@
 @dynamic setting;
 @dynamic user_id;
 @dynamic user_name;
-@dynamic access_id;
-@dynamic network_id;
+@dynamic selected_permission;
+@dynamic docusign_envelope;
+@dynamic edited_by;
+@dynamic has_multiples;
+@dynamic client_name;
+@dynamic label;
+@dynamic name;
+@dynamic other_image;
+@dynamic pkId;
+@dynamic pocket_closed;
+@dynamic pocket_id;
+@dynamic pocket_name;
+@dynamic pocket_userId;
+@dynamic pops_setting;
+@dynamic ref_status;
+@dynamic req_access_per;
+@dynamic req_net_status;
 
 @end

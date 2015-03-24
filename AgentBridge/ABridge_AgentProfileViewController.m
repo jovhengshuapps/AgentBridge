@@ -71,16 +71,16 @@
     
     NSString *parameters = [NSString stringWithFormat:@"?email=%@",self.loginDetail.email];
     
-    self.urlConnectionProfile = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getuser_info.php" andParameters:parameters];
-    
-    if (self.urlConnectionProfile) {
-//        //NSLog(@"Connection Successful");
-        [self addURLConnection:self.urlConnectionProfile];
-//        [self showOverlayWithMessage:@"LOADING" withIndicator:YES];
-    }
-    else {
-//        //NSLog(@"Connection Failed");
-    }
+//    self.urlConnectionProfile = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getuser_info.php" andParameters:parameters];
+//    
+//    if (self.urlConnectionProfile) {
+////        //NSLog(@"Connection Successful");
+//        [self addURLConnection:self.urlConnectionProfile];
+////        [self showOverlayWithMessage:@"LOADING" withIndicator:YES];
+//    }
+//    else {
+////        //NSLog(@"Connection Failed");
+//    }
     
     self.activityIndicator.hidden = NO;
     

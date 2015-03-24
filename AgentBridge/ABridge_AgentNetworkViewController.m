@@ -78,19 +78,19 @@
     
     NSString *parameters = [NSString stringWithFormat:@"?user_id=%@",loginDetail.user_id];
     
-    self.urlConnectionAgentNetwork = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getuser_network_info.php" andParameters:parameters];
-    
-    if (self.urlConnectionAgentNetwork) {
-//        //NSLog(@"Connection Successful");
-        [self addURLConnection:self.urlConnectionAgentNetwork];
-//        [self showOverlayWithMessage:@"LOADING" withIndicator:YES];
-        
-        self.activityIndicator.hidden = NO;
-        [self.activityIndicator startAnimating];
-    }
-    else {
-//        //NSLog(@"Connection Failed");
-    }
+//    self.urlConnectionAgentNetwork = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getuser_network_info.php" andParameters:parameters];
+//    
+//    if (self.urlConnectionAgentNetwork) {
+////        //NSLog(@"Connection Successful");
+//        [self addURLConnection:self.urlConnectionAgentNetwork];
+////        [self showOverlayWithMessage:@"LOADING" withIndicator:YES];
+//        
+//        self.activityIndicator.hidden = NO;
+//        [self.activityIndicator startAnimating];
+//    }
+//    else {
+////        //NSLog(@"Connection Failed");
+//    }
     
 }
 
