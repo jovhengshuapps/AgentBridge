@@ -200,20 +200,23 @@
 }
 
 - (void)login {
-    
-    if (self.textEmail.text != nil && self.textPassword.text != nil) {
-        if ([self NSStringIsValidEmail:self.textEmail.text]) {
+    NSString *email = self.textEmail.text;
+    NSString *password = self.textPassword.text;
+    if (email != nil && password != nil) {
+        if ([self NSStringIsValidEmail:email]) {
             
             WebserviceCall *call = [[WebserviceCall alloc] init];
             
-            [call initCallMethod:@"POST" serviceURL:[NSString stringWithFormat:@"%@%@",WSA_URL_ROOT,WS_LOGIN_WS] withParameters:@{@"email":self.textEmail.text,@"password":self.textPassword.text} withCompletionHandler:^(id responseObject) {
-                NSError *error = nil;
-                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&error];
+            [call initCallMethod:@"POST" serviceURL:WS_LOGIN_WS withParameters:@{@"email":email,@"password":password} withCompletionHandler:^(id responseObject) {
+//                NSError *error = nil;
+//                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&error];
                 
                 
-                NSLog(@"error:%@\n\nresponse:%@",error,json);
+//                NSLog(@"response:%@",responseObject);
                 
-                if ([[json objectForKey:@"data"] count]) {
+                NSDictionary *json = [NSDictionary dictionaryWithDictionary:(NSDictionary*)responseObject];
+                
+                if (json && [[json objectForKey:@"data"] count]) {
                     self.labelLoading.text = @"Saving Login details.";
                     NSDictionary *dataJson = [[json objectForKey:@"data"] firstObject];
                     
@@ -222,7 +225,7 @@
                     self.item = [NSEntityDescription
                                  insertNewObjectForEntityForName:@"LoginDetails"
                                  inManagedObjectContext:context];
-                    self.item.user_id = [NSNumber numberWithInt:[[dataJson objectForKey:@"id"] integerValue]];
+                    self.item.user_id = [NSNumber numberWithInteger:[[dataJson objectForKey:@"id"] integerValue]];
                     self.item.name = [dataJson objectForKey:@"name"];
                     self.item.username = [dataJson objectForKey:@"username"];
                     self.item.email = [dataJson objectForKey:@"email"];
@@ -233,6 +236,7 @@
                         //NSLog(@"Error occurred in saving Login Details:%@",[errorSave localizedDescription]);
                     }
                     else {
+                        NSLog(@"#################### CALL PROFILE");
                         [self retrieveProfileInfo];
                     }
                 }
@@ -285,55 +289,57 @@
     
 }
 
-- (void) retrieveProfileInfo {
-    
+- (void) registerDeviceInfo {
     //Register Device
     self.labelLoading.text = @"Retrieving Profile.";
-    WebserviceCall *callRegisterDevice= [[WebserviceCall alloc] init];    
+    WebserviceCall *callRegisterDevice= [[WebserviceCall alloc] init];
     
     NSString *deviceToken = ((ABridge_AppDelegate *)[[UIApplication sharedApplication] delegate]).deviceTokenString;
     NSInteger user_id = [self.item.user_id integerValue];
     
     deviceToken = (deviceToken)?deviceToken:@"simulator";
     
-    NSLog(@"id:%i, %@",user_id, deviceToken);
+    //    NSLog(@"id:%li, %@",user_id, deviceToken);
     
-    [callRegisterDevice initCallMethod:@"GET" serviceURL:@"http://agentbridge.com/webservice/register_device.php" withParameters:@{@"user_id":[NSNumber numberWithInteger:user_id],@"token":deviceToken} withCompletionHandler:^(id responseObject) {
+    [callRegisterDevice initCallMethod:@"GET" serviceURL:WS_REGISTER_DEVICE withParameters:@{@"user_id":[NSNumber numberWithInteger:user_id],@"token":deviceToken} withCompletionHandler:^(id responseObject) {
         NSError *errorData = nil;
         NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&errorData];
-        NSLog(@"json:%@",json);
+        //        NSLog(@"json:%@",json);
         ((ABridge_AppDelegate *)[[UIApplication sharedApplication] delegate]).tokenId = [[[json objectForKey:@"data"] firstObject] objectForKey:@"token_id"];
     }];
     
-//    NSString *urlString = [NSString stringWithFormat:@"http://agentbridge.com/webservice/register_device.php?user_id=%i&token=%@", user_id, deviceToken];
+    //    NSString *urlString = [NSString stringWithFormat:@"http://agentbridge.com/webservice/register_device.php?user_id=%i&token=%@", user_id, deviceToken];
     //                    NSLog(@"urlString:%@",urlString);
-//    __block NSError *errorData = nil;
-//    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlString]];
-//    [request setCompletionBlock:^{
-//        // Use when fetching text data
-//        //                        NSString *responseString = [request responseString];
-//        // Use when fetching binary data
-//        NSData *responseData = [request responseData];
-//        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&errorData];
-//        //                        NSLog(@"json:%@",json);
-//        ((ABridge_AppDelegate *)[[UIApplication sharedApplication] delegate]).tokenId = [[[json objectForKey:@"data"] firstObject] objectForKey:@"token_id"];
-//    }];
-//    [request setFailedBlock:^{
-//        NSError *error = [request error];
-//        NSLog(@"error:%@",error);
-//    }];
-//    [request startAsynchronous];
-    
+    //    __block NSError *errorData = nil;
+    //    __weak ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:urlString]];
+    //    [request setCompletionBlock:^{
+    //        // Use when fetching text data
+    //        //                        NSString *responseString = [request responseString];
+    //        // Use when fetching binary data
+    //        NSData *responseData = [request responseData];
+    //        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseData options:NSJSONReadingAllowFragments error:&errorData];
+    //        //                        NSLog(@"json:%@",json);
+    //        ((ABridge_AppDelegate *)[[UIApplication sharedApplication] delegate]).tokenId = [[[json objectForKey:@"data"] firstObject] objectForKey:@"token_id"];
+    //    }];
+    //    [request setFailedBlock:^{
+    //        NSError *error = [request error];
+    //        NSLog(@"error:%@",error);
+    //    }];
+    //    [request startAsynchronous];
+}
+
+- (void) retrieveProfileInfo {
     
     //Retrieve User Profile
     WebserviceCall *callProfile = [[WebserviceCall alloc] init];
     
-    [callProfile initCallMethod:@"GET" serviceURL:[NSString stringWithFormat:@"%@%@?email=%@",WSA_URL_ROOT,WS_GETUSER_PROFILE_INFO,self.item.email] withParameters:nil withCompletionHandler:^(id responseObject) {
+    [callProfile initCallMethod:@"GET" serviceURL:WS_GETUSER_PROFILE_INFO withParameters:nil withCompletionHandler:^(id responseObject) {
         NSError *error = nil;
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&error];
+//        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&error];
         
+        NSLog(@"error:%@\n\nresponse:%@",error,responseObject);
         
-        NSLog(@"error:%@\n\nresponse:%@",error,json);
+        NSDictionary *json = [NSDictionary dictionaryWithDictionary:(NSDictionary*)responseObject];
         
         if ([[json objectForKey:@"data"] count]) {
             

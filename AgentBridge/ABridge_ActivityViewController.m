@@ -72,9 +72,9 @@
     
     self.loginDetail = (LoginDetails*)[fetchedObjects firstObject];
     
-    if ([fetchedObjects count] > 0) {
-        [self reloadData];
-    }
+//    if ([fetchedObjects count] > 0) {
+//        [self reloadData];
+//    }
 }
 
 - (void) viewDidAppear:(BOOL)animated {

@@ -23,6 +23,7 @@
 #define WS_VALIDATE_EMAIL  @"validate_invite_b.php"
 
 #define WS_GETUSER_PROFILE_INFO @"getuser_info.php"
+#define WS_REGISTER_DEVICE @"register_device.php"
 
 #define WS_GETUSER_NETWORK_INFO  @"getuser_network_info.php"
 #define WS_GET_POPs  @"getpops.php"
