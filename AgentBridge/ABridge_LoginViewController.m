@@ -207,7 +207,7 @@
             
             WebserviceCall *call = [[WebserviceCall alloc] init];
             
-            [call initCallMethod:@"POST" serviceURL:WS_LOGIN_WS withParameters:@{@"email":email,@"password":password} withCompletionHandler:^(id responseObject) {
+            [call initCallMethod:@"POST" serviceURL:WS_LOGIN_WS withParameters:@{@"email":email,@"password":password} usingRootURL:NO withCompletionHandler:^(id responseObject) {
 //                NSError *error = nil;
 //                NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&error];
                 
@@ -236,8 +236,8 @@
                         //NSLog(@"Error occurred in saving Login Details:%@",[errorSave localizedDescription]);
                     }
                     else {
-                        NSLog(@"#################### CALL PROFILE");
-                        [self retrieveProfileInfo];
+//                        NSLog(@"#################### CALL PROFILE");
+                        [self registerDeviceInfo];
                     }
                 }
                 else {
@@ -267,14 +267,14 @@
 //            
 //            
 //            self.urlConnectionLogin = [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
-            
-            
-            if (urlConnectionLogin) {
-                //NSLog(@"Connection Successful");
-            }
-            else {
-                //NSLog(@"Connection Failed");
-            }
+//            
+//            
+//            if (urlConnectionLogin) {
+//                //NSLog(@"Connection Successful");
+//            }
+//            else {
+//                //NSLog(@"Connection Failed");
+//            }
             
         }
         else {
@@ -301,11 +301,12 @@
     
     //    NSLog(@"id:%li, %@",user_id, deviceToken);
     
-    [callRegisterDevice initCallMethod:@"GET" serviceURL:WS_REGISTER_DEVICE withParameters:@{@"user_id":[NSNumber numberWithInteger:user_id],@"token":deviceToken} withCompletionHandler:^(id responseObject) {
-        NSError *errorData = nil;
-        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&errorData];
-        //        NSLog(@"json:%@",json);
-        ((ABridge_AppDelegate *)[[UIApplication sharedApplication] delegate]).tokenId = [[[json objectForKey:@"data"] firstObject] objectForKey:@"token_id"];
+    [callRegisterDevice initCallMethod:@"GET" serviceURL:@"https://www.agentbridge.com/webservice/register_device.php" withParameters:@{@"user_id":[NSNumber numberWithInteger:user_id],@"token":deviceToken} usingRootURL:YES withCompletionHandler:^(id responseObject) {
+//        NSLog(@"responseObject:%@",responseObject);
+//        NSError *errorData = nil;
+//        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&errorData];
+        ((ABridge_AppDelegate *)[[UIApplication sharedApplication] delegate]).tokenId = [[[((NSDictionary*)responseObject) objectForKey:@"data"] firstObject] objectForKey:@"token_id"];
+        [self retrieveProfileInfo];
     }];
     
     //    NSString *urlString = [NSString stringWithFormat:@"http://agentbridge.com/webservice/register_device.php?user_id=%i&token=%@", user_id, deviceToken];
@@ -333,11 +334,11 @@
     //Retrieve User Profile
     WebserviceCall *callProfile = [[WebserviceCall alloc] init];
     
-    [callProfile initCallMethod:@"GET" serviceURL:WS_GETUSER_PROFILE_INFO withParameters:nil withCompletionHandler:^(id responseObject) {
+    [callProfile initCallMethod:@"GET" serviceURL:@"https://www.agentbridge.com/webservice/getuser_info.php" withParameters:@{@"email":self.item.email} usingRootURL:YES withCompletionHandler:^(id responseObject) {
         NSError *error = nil;
 //        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingAllowFragments error:&error];
         
-        NSLog(@"error:%@\n\nresponse:%@",error,responseObject);
+//        NSLog(@"error:%@\n\nresponse:%@",error,responseObject);
         
         NSDictionary *json = [NSDictionary dictionaryWithDictionary:(NSDictionary*)responseObject];
         

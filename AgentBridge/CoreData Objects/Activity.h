@@ -36,7 +36,7 @@
 @property (nonatomic, retain) NSString * referral_fee;
 @property (nonatomic, retain) NSString * referral_id;
 @property (nonatomic, retain) NSString * referral_response;
-@property (nonatomic, retain) NSNumber * referral_status;
+@property (nonatomic, retain) NSString * referral_status;
 @property (nonatomic, retain) NSString * referral_update_id;
 @property (nonatomic, retain) NSString * setting;
 @property (nonatomic, retain) NSString * user_id;
@@ -58,5 +58,16 @@
 @property (nonatomic, retain) NSString * ref_status;
 @property (nonatomic, retain) NSString * req_access_per;
 @property (nonatomic, retain) NSString * req_net_status;
+@property (nonatomic, retain) NSString * client_address_1;
+@property (nonatomic, retain) NSString * client_address_2;
+@property (nonatomic, retain) NSString * client_city;
+@property (nonatomic, retain) NSString * client_country_code;
+@property (nonatomic, retain) NSString * client_country_name;
+@property (nonatomic, retain) NSString * client_email;
+@property (nonatomic, retain) NSString * client_number;
+@property (nonatomic, retain) NSString * client_state_code;
+@property (nonatomic, retain) NSString * client_state_name;
+@property (nonatomic, retain) NSString * client_zip;
+@property (nonatomic, retain) NSString * other_user_image;
 
 @end

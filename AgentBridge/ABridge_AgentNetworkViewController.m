@@ -75,22 +75,108 @@
     
     LoginDetails *loginDetail = (LoginDetails*)[fetchedObjects firstObject];
     
-    
-    NSString *parameters = [NSString stringWithFormat:@"?user_id=%@",loginDetail.user_id];
-    
-//    self.urlConnectionAgentNetwork = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getuser_network_info.php" andParameters:parameters];
-//    
-//    if (self.urlConnectionAgentNetwork) {
-////        //NSLog(@"Connection Successful");
-//        [self addURLConnection:self.urlConnectionAgentNetwork];
-////        [self showOverlayWithMessage:@"LOADING" withIndicator:YES];
+    NSString *parameters = [NSString stringWithFormat:@"?user_id=%@",[loginDetail.user_id stringValue]];
+    self.activityIndicator.hidden = NO;
+    [self.activityIndicator startAnimating];
+
+//    [self performWebserviceCall:GET_METHOD url:@"webservice/getuser_network_info.php" parameters:@{@"user_id":[loginDetail.user_id stringValue]} usingRootURL:YES completion:^(id responseObject) {
+//        NSDictionary *json = [NSDictionary dictionaryWithDictionary:(NSDictionary*)responseObject];
+//        if ([[json objectForKey:@"data"] count]) {
+//            
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                NSManagedObjectContext *context = ((ABridge_AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
+//                for (NSDictionary *entry in [json objectForKey:@"data"]) {
+//                    AgentProfile *agent = nil;
+//                    
+//                    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"user_id == %@", [entry objectForKey:@"user_id"]];
+//                    NSArray *result = [self fetchObjectsWithEntityName:@"AgentProfile" andPredicate:predicate];
+//                    if ([result count]) {
+//                        agent = (AgentProfile*)[result firstObject];
+//                    }
+//                    else {
+//                        agent = [NSEntityDescription insertNewObjectForEntityForName: @"AgentProfile" inManagedObjectContext: context];
+//                    }
+//                    
+//                    [agent setValuesForKeysWithDictionary:entry];
+//                    
+//                    //                //NSLog(@"agent:%@",[agent valueForKey:@"firstname"]);
+//                    
+//                    NSError *error = nil;
+//                    if (![context save:&error]) {
+//                        //NSLog(@"Error on saving Buyer:%@",[error localizedDescription]);
+//                    }
+//                    else {
+//                        if (self.arrayOfAgents == nil) {
+//                            self.arrayOfAgents = [[NSMutableArray alloc] init];
+//                        }
+//                        
+//                        [self.arrayOfAgents addObject:agent];
+//                    }
+//                }
+//                
+//                self.numberOfAgentNetwork = [self.arrayOfAgents count];
+//                
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+//                    
+//                    self.pageController.dataSource = self;
+//                    CGRect pageControllerFrame = self.viewForPages.frame;
+//                    pageControllerFrame.origin.x = 0.0f;
+//                    pageControllerFrame.origin.y = 1.0f;
+//                    self.pageController.view.frame = pageControllerFrame;
+//                    
+//                    self.labelNumberOfAgentNetwork.text = [NSString stringWithFormat:@"My Network (%li)",(long)self.numberOfAgentNetwork];
+//                    [self.labelNumberOfAgentNetwork sizeToFit];
+//                    
+//                    CGRect frame = self.activityIndicator.frame;
+//                    frame.origin.x = self.labelNumberOfAgentNetwork.frame.origin.x + self.labelNumberOfAgentNetwork.frame.size.width + 10.0f;
+//                    self.activityIndicator.frame = frame;
+//                    
+//                    ABridge_AgentNetworkPagesViewController *initialViewController = [self viewControllerAtIndex:0];
+//                    
+//                    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
+//                    
+//                    [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+//                    
+//                    [self addChildViewController:self.pageController];
+//                    [[self viewForPages] addSubview:[self.pageController view]];
+//                    [self.pageController didMoveToParentViewController:self];
+//                    //                self.buttonRefer.hidden = NO;
+//                    //                //NSLog(@"agents:%@",self.arrayOfAgents);
+//                });
+//                
+//            });
+//            [self dismissOverlay];
+//        }
+//        else {
+//            [self.pageController.view removeFromSuperview];
+//            [self.pageController removeFromParentViewController];
+//            self.pageController = nil;
+//            self.numberOfAgentNetwork = 0;
+//            self.labelNumberOfAgentNetwork.text = @"My Network";
+//            
+//            //        self.buttonRefer.hidden = YES;
+//            [self showOverlayWithMessage:@"You currently have no members in your Network." withIndicator:NO];
+//        }
 //        
-//        self.activityIndicator.hidden = NO;
-//        [self.activityIndicator startAnimating];
-//    }
-//    else {
-////        //NSLog(@"Connection Failed");
-//    }
+//        [self.activityIndicator stopAnimating];
+//        self.activityIndicator.hidden = YES;
+//    }];
+    
+    
+    self.urlConnectionAgentNetwork = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getuser_network_info.php" andParameters:parameters];
+    
+    if (self.urlConnectionAgentNetwork) {
+//        //NSLog(@"Connection Successful");
+        [self addURLConnection:self.urlConnectionAgentNetwork];
+//        [self showOverlayWithMessage:@"LOADING" withIndicator:YES];
+        
+        self.activityIndicator.hidden = NO;
+        [self.activityIndicator startAnimating];
+    }
+    else {
+//        //NSLog(@"Connection Failed");
+    }
     
 }
 

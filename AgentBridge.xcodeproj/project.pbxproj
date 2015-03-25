@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3306D2E21AC2E62000EA68A7 /* NSMutableDictionary+RenameKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 3306D2E11AC2E62000EA68A7 /* NSMutableDictionary+RenameKey.m */; };
 		335046A31AB9B228007D3C9F /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3350467B1AB9B228007D3C9F /* AFHTTPRequestOperation.m */; };
 		335046A41AB9B228007D3C9F /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3350467D1AB9B228007D3C9F /* AFHTTPRequestOperationManager.m */; };
 		335046A51AB9B228007D3C9F /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3350467F1AB9B228007D3C9F /* AFHTTPSessionManager.m */; };
@@ -127,6 +128,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3306D2E11AC2E62000EA68A7 /* NSMutableDictionary+RenameKey.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+RenameKey.m"; sourceTree = "<group>"; };
 		3350467A1AB9B228007D3C9F /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
 		3350467B1AB9B228007D3C9F /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
 		3350467C1AB9B228007D3C9F /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
@@ -649,6 +651,7 @@
 				6E503B93186BE88D00E0F329 /* ABridge_UILabelInset.m */,
 				6E54D2D418A5EF7A009F6ECB /* UIImage+ImageResize.h */,
 				6E54D2D518A5EF7A009F6ECB /* UIImage+ImageResize.m */,
+				3306D2E11AC2E62000EA68A7 /* NSMutableDictionary+RenameKey.m */,
 				6EEF586918337E6B00C3214E /* Main.storyboard */,
 				6EEF5883183396AB00C3214E /* Constants.h */,
 				6EEF584818337E4000C3214E /* AgentBridge.xcdatamodeld */,
@@ -984,6 +987,7 @@
 				335046B41AB9B228007D3C9F /* Reachability.m in Sources */,
 				6E5AEF8D184C7C2800FE7B9E /* RequestAccess.m in Sources */,
 				6E54D2D618A5EF7A009F6ECB /* UIImage+ImageResize.m in Sources */,
+				3306D2E21AC2E62000EA68A7 /* NSMutableDictionary+RenameKey.m in Sources */,
 				335046A91AB9B228007D3C9F /* AFURLRequestSerialization.m in Sources */,
 				335046A61AB9B228007D3C9F /* AFNetworkReachabilityManager.m in Sources */,
 				6EFF613E1851BB5700A5A86A /* ASIDataCompressor.m in Sources */,

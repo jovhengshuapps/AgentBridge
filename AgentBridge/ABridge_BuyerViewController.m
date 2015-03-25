@@ -91,8 +91,101 @@
 //}
 
 - (void)loadBuyers{
-    NSString *parameters = [NSString stringWithFormat:@"?user_id=%@",self.loginDetail.user_id];
-//    
+//    NSString *parameters = [NSString stringWithFormat:@"?user_id=%@",self.loginDetail.user_id];
+    self.activityIndicator.hidden = NO;
+    [self.activityIndicator startAnimating];
+
+    [self performWebserviceCall:GET_METHOD url:@"https://www.agentbridge.com/webservice/getbuyers.php" parameters:@{@"user_id":[self.loginDetail.user_id stringValue]} usingRootURL:YES completion:^(id responseObject) {
+        NSDictionary *json = [NSDictionary dictionaryWithDictionary:(NSDictionary*)responseObject];
+        if ([[json objectForKey:@"data"] count]) {
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                
+                NSManagedObjectContext *context = ((ABridge_AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
+                for (NSDictionary *entry in [json objectForKey:@"data"]) {
+                    NSLog(@"entry:%@",entry);
+                    Buyer *buyer = nil;
+                    
+                    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"buyer_id == %@", [entry objectForKey:@"buyer_id"]];
+                    NSArray *result = [self fetchObjectsWithEntityName:@"Buyer" andPredicate:predicate];
+                    if ([result count]) {
+                        buyer = (Buyer*)[result firstObject];
+                    }
+                    else {
+                        buyer = [NSEntityDescription insertNewObjectForEntityForName: @"Buyer" inManagedObjectContext: context];
+                    }
+                    //for new_pops
+                    NSMutableDictionary *mutableDictionary = [NSMutableDictionary dictionaryWithDictionary:entry];
+                    [mutableDictionary renameKey:@"new_pops" to:@"pops_new"];
+                    
+                    
+                    [buyer setValuesForKeysWithDictionary:mutableDictionary];
+                    
+                    NSError *error = nil;
+                    if (![context save:&error]) {
+                        //NSLog(@"Error on saving Buyer:%@",[error localizedDescription]);
+                    }
+                    else {
+                        if (self.arrayOfBuyer == nil) {
+                            self.arrayOfBuyer = [[NSMutableArray alloc] init];
+                        }
+                        
+                        [self.arrayOfBuyer addObject:buyer];
+                    }
+                }
+                
+                self.numberOfBuyer = [self.arrayOfBuyer count];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+                    
+                    self.pageController.dataSource = self;
+                    CGRect pageControllerFrame = self.viewForPages.frame;
+                    pageControllerFrame.origin.x = 0.0f;
+                    pageControllerFrame.origin.y = 1.0f;
+                    self.pageController.view.frame = pageControllerFrame;
+                    
+                    self.labelNumberOfBuyers.text = [NSString stringWithFormat:@"My Buyers (%li)",(long)self.numberOfBuyer];
+                    
+                    [self.labelNumberOfBuyers sizeToFit];
+                    CGRect frame = self.activityIndicator.frame;
+                    frame.origin.x = self.labelNumberOfBuyers.frame.origin.x + self.labelNumberOfBuyers.frame.size.width + 10.0f;
+                    self.activityIndicator.frame = frame;
+                    
+                    self.activityIndicator.hidden = YES;
+                    [self.activityIndicator stopAnimating];
+                    
+                    ABridge_BuyerPagesViewController *initialViewController = [self viewControllerAtIndex:0];
+                    
+                    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
+                    
+                    [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+                    
+                    [self addChildViewController:self.pageController];
+                    [[self viewForPages] addSubview:[self.pageController view]];
+                    [self.pageController didMoveToParentViewController:self];
+                    
+                    if(self.scrollToBuyerId == nil) {
+                        [self scrollToBuyer:@"load"];
+                    }
+                });
+                
+            });
+            [self dismissOverlay];
+        }
+        else {
+            [self.pageController.view removeFromSuperview];
+            [self.pageController removeFromParentViewController];
+            self.pageController = nil;
+            self.numberOfBuyer = 0;
+            self.labelNumberOfBuyers.text = @"My Buyers";
+            self.activityIndicator.hidden = YES;
+            [self.activityIndicator stopAnimating];
+            
+            [self showOverlayWithMessage:@"You currently don't have any Buyers." withIndicator:NO];
+        }
+    }];
+    
 //    self.urlConnectionBuyer = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getbuyers.php" andParameters:parameters];
 //    
 //    if (self.urlConnectionBuyer) {

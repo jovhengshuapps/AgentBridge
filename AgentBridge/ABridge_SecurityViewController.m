@@ -73,6 +73,7 @@
     [self addPaddingAndBorder:self.textFieldConfirmPassword color:[UIColor colorWithRed:178.0f/255.0f green:178.0f/255.0f blue:178.0f/255.0f alpha:1.0f]];
     
     [self addPaddingAndBorder:self.textFieldOldPassword color:[UIColor colorWithRed:178.0f/255.0f green:178.0f/255.0f blue:178.0f/255.0f alpha:1.0f]];
+    [self.toolbarAccessory removeFromSuperview];
 }
 
 - (void)didReceiveMemoryWarning
@@ -214,7 +215,10 @@
 }
 
 - (IBAction)prevItem:(id)sender {
-    if (self.currentTextField == self.textFieldNewPassword) {
+    if (self.currentTextField == self.textFieldOldPassword) {
+        [self.textFieldConfirmPassword becomeFirstResponder];
+    }
+    else if (self.currentTextField == self.textFieldNewPassword) {
         [self.textFieldOldPassword becomeFirstResponder];
     }
     else if (self.currentTextField == self.textFieldConfirmPassword) {
@@ -229,10 +233,25 @@
     else if (self.currentTextField == self.textFieldNewPassword) {
         [self.textFieldConfirmPassword becomeFirstResponder];
     }
+    else if (self.currentTextField == self.textFieldConfirmPassword) {
+        [self.textFieldOldPassword becomeFirstResponder];
+    }
 }
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField {
-    textField.inputAccessoryView = self.toolbarAccessory;
+    
+    UIToolbar* numberToolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    numberToolbar.barStyle = UIBarStyleBlackTranslucent;
+    numberToolbar.items = [NSArray arrayWithObjects:
+                           [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"prev"] style:UIBarButtonItemStyleBordered target:self action:@selector(prevItem:)],
+                           [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"next"] style:UIBarButtonItemStyleBordered target:self action:@selector(nextItem:)],
+                           [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil],
+                           [[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(dismissKeyboard:)],
+                           nil];
+    [numberToolbar sizeToFit];
+    
+    [textField setInputAccessoryView:numberToolbar];
+    
     self.currentTextField = textField;
     [UIView animateWithDuration:0.2f animations:^{
         CGRect frame = self.viewContent.frame;

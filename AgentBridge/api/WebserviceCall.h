@@ -26,7 +26,7 @@ typedef NS_ENUM(NSInteger, WebserviceCallResponse) {
 @interface WebserviceCall : NSObject <NSURLConnectionDelegate>{
     NSMutableData *_responseData;
 }
-
--(void)initCallMethod:(NSString*)method serviceURL:(NSString*)url withParameters:(NSDictionary *)parameters withCompletionHandler:(void(^)(id responseObject))completion;
+-(void)stop;
+-(void)initCallMethod:(NSString*)method serviceURL:(NSString*)url withParameters:(NSDictionary *)parameters usingRootURL:(BOOL)rootURL withCompletionHandler:(void(^)(id responseObject))completion;
 
 @end

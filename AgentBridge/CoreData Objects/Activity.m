@@ -57,5 +57,15 @@
 @dynamic ref_status;
 @dynamic req_access_per;
 @dynamic req_net_status;
-
+@dynamic client_address_1;
+@dynamic client_address_2;
+@dynamic client_city;
+@dynamic client_country_code;
+@dynamic client_country_name;
+@dynamic client_email;
+@dynamic client_number;
+@dynamic client_state_code;
+@dynamic client_state_name;
+@dynamic client_zip;
+@dynamic other_user_image;
 @end

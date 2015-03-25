@@ -10,6 +10,7 @@
 
 @interface ABridge_ParentViewController ()
 @property (strong, nonatomic) UIView *viewOverlay;
+@property (strong, nonatomic) WebserviceCall *call;
 @end
 
 @implementation ABridge_ParentViewController
@@ -75,6 +76,7 @@
     [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [self.slidingViewController anchorTopViewTo:ECRight];
+    [self.call stop]; //notworking
 }
 
 - (IBAction)revealSearch:(id)sender
@@ -83,28 +85,29 @@
     [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationFade];
     [self.slidingViewController anchorTopViewTo:ECLeft];
 }
-- (void) performWebserviceCall:(NSString*)method url:(NSString*)url parameters:(NSDictionary*)parameters completion:(void(^)(id responseObject))completion {
-    WebserviceCall *call = [[WebserviceCall alloc] init];
-    
-    [call initCallMethod:method serviceURL:url withParameters:parameters withCompletionHandler:^(id responseObject) {
+- (void) performWebserviceCall:(NSString*)method url:(NSString*)url parameters:(NSDictionary*)parameters usingRootURL:(BOOL)rootURL completion:(void(^)(id responseObject))completion {
+    if (!self.call) {
+        self.call = [[WebserviceCall alloc] init];
+    }
+    [self.call initCallMethod:method serviceURL:url withParameters:parameters usingRootURL:rootURL withCompletionHandler:^(id responseObject) {
         completion(responseObject);
     }];
 }
-//- (NSURLConnection *)urlConnectionWithURLString:(NSString *)urlString andParameters:(NSString *)parameters {
-//    NSMutableString *urlString_ = [NSMutableString stringWithString:urlString];
-//    [urlString_ appendString:parameters];
-//    NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString_]];
-//    
-//    return [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
-//}
-//
-//- (void)addURLConnection:(NSURLConnection*)urlConnection {
-//    if (self.arrayOfURLConnection == nil) {
-//        self.arrayOfURLConnection = [[NSMutableArray alloc] init];
-//    }
-//    
-//    [self.arrayOfURLConnection addObject:urlConnection];
-//}
+- (NSURLConnection *)urlConnectionWithURLString:(NSString *)urlString andParameters:(NSString *)parameters {
+    NSMutableString *urlString_ = [NSMutableString stringWithString:urlString];
+    [urlString_ appendString:parameters];
+    NSURLRequest *urlRequest = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString_]];
+    
+    return [[NSURLConnection alloc] initWithRequest:urlRequest delegate:self startImmediately:YES];
+}
+
+- (void)addURLConnection:(NSURLConnection*)urlConnection {
+    if (self.arrayOfURLConnection == nil) {
+        self.arrayOfURLConnection = [[NSMutableArray alloc] init];
+    }
+    
+    [self.arrayOfURLConnection addObject:urlConnection];
+}
 
 - (NSArray *)fetchObjectsWithEntityName:(NSString *)entity andPredicate:(NSPredicate *)predicate {
     NSManagedObjectContext *context = ((ABridge_AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;

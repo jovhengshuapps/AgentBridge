@@ -71,18 +71,8 @@
     
     NSString *parameters = [NSString stringWithFormat:@"?email=%@",self.loginDetail.email];
     
-//    self.urlConnectionProfile = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getuser_info.php" andParameters:parameters];
-//    
-//    if (self.urlConnectionProfile) {
-////        //NSLog(@"Connection Successful");
-//        [self addURLConnection:self.urlConnectionProfile];
-////        [self showOverlayWithMessage:@"LOADING" withIndicator:YES];
-//    }
-//    else {
-////        //NSLog(@"Connection Failed");
-//    }
-    
     self.activityIndicator.hidden = NO;
+    
     
     self.labelName.font = FONT_OPENSANS_REGULAR(FONT_SIZE_REGULAR);
     
@@ -94,6 +84,143 @@
     bottomBorder.backgroundColor = [UIColor colorWithRed:191.0f/255.0f green:191.0f/255.0f blue:191.0f/255.0f alpha:1.0f].CGColor;
     
     [self.viewContacts.layer addSublayer:bottomBorder];
+    
+    
+//    [self performWebserviceCall:GET_METHOD url:@"webservice/getuser_info.php" parameters:@{@"email":self.loginDetail.email} usingRootURL:YES completion:^(id responseObject) {
+//        NSDictionary *json = [NSDictionary dictionaryWithDictionary:(NSDictionary*)responseObject];
+//        
+//        if ([[json objectForKey:@"data"] count]) {
+//            
+//            self.activityIndicator.hidden = NO;
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                
+//                NSManagedObjectContext *context = ((ABridge_AppDelegate *)[[UIApplication sharedApplication] delegate]).managedObjectContext;
+//                for (NSDictionary *entry in [json objectForKey:@"data"]) {
+//                    self.profileData = nil;
+//                    
+//                    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"user_id == %@", [entry objectForKey:@"user_id"]];
+//                    NSArray *result = [self fetchObjectsWithEntityName:@"AgentProfile" andPredicate:predicate];
+//                    if ([result count]) {
+//                        self.profileData = (AgentProfile*)[result firstObject];
+//                    }
+//                    else {
+//                        self.profileData = [NSEntityDescription insertNewObjectForEntityForName: @"AgentProfile" inManagedObjectContext: context];
+//                    }
+//                    
+//                    [self.profileData setValuesForKeysWithDictionary:entry];
+//                    
+//                    NSError *error = nil;
+//                    if (![context save:&error]) {
+//                        //NSLog(@"Error on saving Buyer:%@",[error localizedDescription]);
+//                    }
+//                }
+//                
+//                
+//                self.arrayKTableKeys = [[NSMutableArray alloc] init];
+//                
+//                if (![self isNull:self.profileData.broker_name]) {
+//                    [self.arrayKTableKeys addObject:@"brokerage"];
+//                }
+//                
+//                if (![self isNull:self.profileData.street_address] || ![self isNull:self.profileData.suburb] || ![self isNull:self.profileData.city] || ![self isNull:self.profileData.state_code] || ![self isNull:self.profileData.zip] || ![self isNull:self.profileData.countries_iso_code_3]) {
+//                    [self.arrayKTableKeys addObject:@"address"];
+//                }
+//                
+//                if (![self isNull:self.profileData.mobile_number]) {
+//                    if ([self.profileData.mobile_number rangeOfString:@","].location == NSNotFound) {
+//                        [self.arrayKTableKeys addObject:@"mobile1"];
+//                    }
+//                    else {
+//                        NSInteger counter = 1;
+//                        NSArray *array = [self.profileData.mobile_number componentsSeparatedByString:@","];
+//                        for (NSString *number in array) {
+//                            if (![self isNull:number]) {
+//                                [self.arrayKTableKeys addObject:[NSString stringWithFormat:@"mobile%li",(long)counter]];
+//                                counter++;
+//                            }
+//                        }
+//                    }
+//                }
+//                
+//                if (![self isNull:self.profileData.email]) {
+//                    [self.arrayKTableKeys addObject:@"email"];
+//                }
+//                
+//                if (![self isNull:self.profileData.zipcodes]) {
+//                    [self.arrayKTableKeys addObject:@"zipcodes"];
+//                }
+//                
+//                if (![self isNull:self.profileData.average_price]) {
+//                    [self.arrayKTableKeys addObject:@"average_price"];
+//                }
+//                
+//                if (![self isNull:self.profileData.total_volume]) {
+//                    [self.arrayKTableKeys addObject:@"total_volume"];
+//                }
+//                
+//                if (![self isNull:self.profileData.total_sides]) {
+//                    [self.arrayKTableKeys addObject:@"total_sides"];
+//                }
+//                
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    
+//                    self.labelName.text = [NSString stringWithFormat:@"%@ %@",self.profileData.firstname, self.profileData.lastname];
+//                    CGSize constraint = CGSizeMake(150.0f, 20000.0f);
+//                    
+//                    CGSize size = [self.labelName.text sizeWithFont:FONT_OPENSANS_REGULAR(FONT_SIZE_REGULAR) constrainedToSize:constraint lineBreakMode:NSLineBreakByWordWrapping];
+//                    
+//                    CGFloat height = MAX(size.height, 27.0f);
+//                    
+//                    CGRect frame = self.viewContacts.frame;
+//                    frame.size.height += (height - self.labelName.frame.size.height);
+//                    self.viewContacts.frame = frame;
+//                    
+//                    frame = self.labelName.frame;
+//                    frame.size.height = height;
+//                    self.labelName.frame = frame;
+//                    
+//                    self.tableView.tableHeaderView = self.viewContacts;
+//                    
+//                    frame = self.imageViewVerified.frame;
+//                    frame.origin.y = self.labelName.frame.origin.y + self.labelName.frame.size.height + 5.0f;
+//                    self.imageViewVerified.frame = frame;
+//                    
+//                    if([self.profileData.is_term_accepted integerValue])
+//                        self.imageViewVerified.hidden = NO;
+//                    else
+//                        self.imageViewVerified.hidden = YES;
+//                    
+//                    [self.tableView reloadData];
+//                });
+//                
+//                
+//                if (self.profileData.image_data == nil && ![self isNull:self.profileData.image]) {
+//                    self.profileData.image_data = [NSData dataWithContentsOfURL:[NSURL URLWithString:self.profileData.image]];
+//                }
+//                
+//                dispatch_async(dispatch_get_main_queue(), ^{
+//                    self.activityIndicator.hidden = YES;
+//                    if (self.profileData.image_data != nil) {
+//                        self.imagePicture.image = [UIImage imageWithData:self.profileData.image_data];
+//                    }
+//                });
+//            });
+//            
+//        }
+//        
+//    }];
+    
+    self.urlConnectionProfile = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getuser_info.php" andParameters:parameters];
+    
+    if (self.urlConnectionProfile) {
+//        //NSLog(@"Connection Successful");
+        [self addURLConnection:self.urlConnectionProfile];
+//        [self showOverlayWithMessage:@"LOADING" withIndicator:YES];
+    }
+    else {
+//        //NSLog(@"Connection Failed");
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning

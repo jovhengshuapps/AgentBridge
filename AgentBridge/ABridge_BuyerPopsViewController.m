@@ -85,28 +85,43 @@
     [super viewDidAppear:animated];
     
     NSString *parameters = [NSString stringWithFormat:@"?buyer_id=%li",(long)self.buyer_id];
-//    
+    self.activityIndicator.hidden = NO;
+    [self.activityIndicator startAnimating];
+
 //    if (is_saved) {
-//        self.buttonSave.hidden = YES;
-//        self.urlConnectionProperty = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getbuyers_saved.php" andParameters:parameters];
+//        [self performWebserviceCall:GET_METHOD url:WS_GET_POPs parameters:@{@"buyer_id":[NSString stringWithFormat:@"%li",(long)self.buyer_id]} completion:^(id responseObject) {
+//            
+//        }];
 //    }
-//    else {
-//        
-//        self.urlConnectionProperty = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getbuyers_new.php" andParameters:parameters];
+//    else {        
+//        [self performWebserviceCall:GET_METHOD url:WS_GET_POPs parameters:@{@"buyer_id":[NSString stringWithFormat:@"%li",(long)self.buyer_id]} completion:^(id responseObject) {
+//            
+//        }];
 //    }
 //    
-////    //NSLog(@"url:%@",self.urlConnectionProperty.originalRequest.URL);
-//    if (self.urlConnectionProperty) {
-////        //NSLog(@"Connection Successful");
-//        [self addURLConnection:self.urlConnectionProperty];
-//        //        [self showOverlayWithMessage:@"LOADING" withIndicator:YES];
-//        
-//        self.activityIndicator.hidden = NO;
-//        [self.activityIndicator startAnimating];
-//    }
-//    else {
-////        //NSLog(@"Connection Failed");
-//    }
+    
+    
+    if (is_saved) {
+        self.buttonSave.hidden = YES;
+        self.urlConnectionProperty = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getbuyers_saved.php" andParameters:parameters];
+    }
+    else {
+        
+        self.urlConnectionProperty = [self urlConnectionWithURLString:@"http://agentbridge.com/webservice/getbuyers_new.php" andParameters:parameters];
+    }
+    
+//    //NSLog(@"url:%@",self.urlConnectionProperty.originalRequest.URL);
+    if (self.urlConnectionProperty) {
+//        //NSLog(@"Connection Successful");
+        [self addURLConnection:self.urlConnectionProperty];
+        //        [self showOverlayWithMessage:@"LOADING" withIndicator:YES];
+        
+        self.activityIndicator.hidden = NO;
+        [self.activityIndicator startAnimating];
+    }
+    else {
+//        //NSLog(@"Connection Failed");
+    }
 }
 
 - (void)didReceiveMemoryWarning

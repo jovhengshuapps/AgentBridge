@@ -14,6 +14,7 @@
 #import "ABridge_AppDelegate.h"
 #import "LoginDetails.h"
 #import "Constants.h"
+#import "NSMutableDictionary+RenameKey.m"
 
 #import "CommonWebserviceCall.h"
 #import "WebserviceCall.h"
@@ -36,9 +37,9 @@ static NSString *const POST_METHOD = @"POST";
 - (void) reloadData;
 
 
-- (void) performWebserviceCall:(NSString*)method url:(NSString*)url parameters:(NSDictionary*)parameters completion:(void(^)(id responseObject))completion;
-//- (NSURLConnection*)urlConnectionWithURLString:(NSString*)urlString andParameters:(NSString*)parameters;
-//- (void)addURLConnection:(NSURLConnection*)urlConnection;
+- (void) performWebserviceCall:(NSString*)method url:(NSString*)url parameters:(NSDictionary*)parameters usingRootURL:(BOOL)rootURL completion:(void(^)(id responseObject))completion;
+- (NSURLConnection*)urlConnectionWithURLString:(NSString*)urlString andParameters:(NSString*)parameters;
+- (void)addURLConnection:(NSURLConnection*)urlConnection;
 - (NSArray*)fetchObjectsWithEntityName:(NSString*)entity andPredicate:(NSPredicate*)predicate;
 
 @end
